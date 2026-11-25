@@ -1,14 +1,13 @@
-import { healthEntrySchema, journalEntrySchema } from "@/lib/db/schemas";
-import { createRepository } from "./create-repository";
-
 /*
- * Репозитории разделов. Специализированные запросы (серии привычек, КБЖУ за день, рекорды…)
- * добавляются в модули разделов на соответствующих этапах поверх этих базовых операций.
+ * Repository layer: единственная точка доступа UI к локальной базе.
+ * Компоненты работают с данными через хуки разделов (src/features/*),
+ * которые вызывают эти репозитории; Dexie/IndexedDB напрямую из UI не используются.
  */
-export const healthEntryRepository = createRepository("healthEntries", healthEntrySchema, "id");
-export const journalRepository = createRepository("journalEntries", journalEntrySchema, "date");
-
+export { backupRepository } from "./backup-repository";
+export { dashboardRepository } from "./dashboard-repository";
 export { habitRepository, type HabitInput } from "./habit-repository";
+export { healthRepository } from "./health-repository";
+export { EMPTY_JOURNAL, isJournalEmpty, journalRepository, type JournalDraft } from "./journal-repository";
 export {
   nutritionRepository,
   type AnyFood,
@@ -23,5 +22,3 @@ export {
   type ProgramItem,
   type SessionSet,
 } from "./workout-repository";
-export { dashboardRepository } from "./dashboard-repository";
-export { backupRepository } from "./backup-repository";

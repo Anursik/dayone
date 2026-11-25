@@ -80,6 +80,7 @@ export function getActiveTab(pathname: string): string {
 /** Родительский экран для кнопки «Назад» или null, если экран корневой. */
 export function getParentPath(pathname: string): string | null {
   const path = normalizePath(pathname);
+  if (path === "/profile/health/metric") return "/profile/health";
   if (path.startsWith("/profile/")) return "/profile";
   if (path.startsWith("/habits/")) return "/habits";
   if (path.startsWith("/nutrition/")) return "/nutrition";

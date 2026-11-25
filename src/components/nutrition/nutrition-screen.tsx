@@ -14,7 +14,7 @@ import { plural } from "@/lib/format";
 import { BUILTIN_FOODS } from "@/lib/nutrition/food-database";
 import { AddFoodSheet } from "./add-food-sheet";
 import { CalorieOverview } from "./calorie-overview";
-import { DayNavigator } from "./day-navigator";
+import { DayNavigator } from "@/components/ui/day-navigator";
 import { EntryEditSheet } from "./entry-edit-sheet";
 import { MealCard } from "./meal-card";
 import { NutritionHistoryCard } from "./nutrition-history-card";

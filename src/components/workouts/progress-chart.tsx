@@ -1,11 +1,11 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useState } from "react";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { SegmentedControl } from "@/components/ui/segmented-control";
+import { useCanHover, useChartTokens } from "@/hooks/use-chart-tokens";
 import type { ProgressPoint } from "@/lib/calculations/workouts";
 import { formatNumber } from "@/lib/format";
-import { useTheme } from "@/lib/theme/theme-provider";
 
 type Metric = "oneRepMax" | "maxWeight" | "maxReps" | "volume";
 
@@ -18,42 +18,14 @@ const METRICS: { value: Metric; label: string; unit: string; title: string }[] =
 
 const dateFmt = new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "short" });
 
-/** Цвета графика берутся из токенов темы (свои значения для светлой и тёмной). */
-function useTokens() {
-  const { resolved } = useTheme();
-  const read = () => {
-    const s = getComputedStyle(document.documentElement);
-    const v = (n: string) => s.getPropertyValue(n).trim();
-    return `${v("--c-workouts")}|${v("--muted-foreground")}|${v("--border")}|${v("--card")}|${resolved}`;
-  };
-  const raw = useSyncExternalStore(
-    (cb) => {
-      const obs = new MutationObserver(cb);
-      obs.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-      return () => obs.disconnect();
-    },
-    read,
-    () => "#2f7bff|#6c6c78|rgba(0,0,0,0.07)|#ffffff|light",
-  );
-  const [line, text, grid, surface] = raw.split("|");
-  return { line, text, grid, surface };
-}
-
 export function ProgressChart({ points, hasWeight }: { points: ProgressPoint[]; hasWeight: boolean }) {
   const options = hasWeight ? METRICS : METRICS.filter((m) => m.value === "maxReps");
   const [metric, setMetric] = useState<Metric>(hasWeight ? "oneRepMax" : "maxReps");
   const active = options.find((m) => m.value === metric) ?? options[0];
-  const tokens = useTokens();
+  const chart = useChartTokens("--chart-workouts");
+  const tokens = { line: chart.series, text: chart.text, grid: chart.grid, surface: chart.surface };
   // Мышь — подсказка при наведении; сенсорный экран — по касанию (надёжнее, чем эмуляция наведения)
-  const canHover = useSyncExternalStore(
-    (cb) => {
-      const m = window.matchMedia("(hover: hover)");
-      m.addEventListener("change", cb);
-      return () => m.removeEventListener("change", cb);
-    },
-    () => window.matchMedia("(hover: hover)").matches,
-    () => false,
-  );
+  const canHover = useCanHover();
 
   const metricKey = active.value;
   // Ось X — по порядковому номеру точки: в один день может быть несколько тренировок,

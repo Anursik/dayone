@@ -53,11 +53,12 @@ export function useNutritionDay(dayKey: string | null): NutritionDay | undefined
   const data = useLiveQuery(async () => {
     if (!dayKey) return undefined;
     const [entries, profile] = await Promise.all([nutritionRepository.entriesForDay(dayKey), profileRepository.get()]);
-    return { entries, goals: profile?.goals ?? null };
+    return { dayKey, entries, goals: profile?.goals ?? null };
   }, [dayKey]);
 
   return useMemo(() => {
-    if (!data) return undefined;
+    // Пока не пришли данные нового дня, не показываем записи предыдущего
+    if (!data || data.dayKey !== dayKey) return undefined;
     const byMeal = { breakfast: [], lunch: [], dinner: [], snack: [] } as Record<MealType, MealEntry[]>;
     for (const e of data.entries) byMeal[e.meal].push(e);
     const mealTotals = Object.fromEntries(MEALS.map((m) => [m.key, sumMacros(byMeal[m.key])])) as Record<MealType, Macros>;
@@ -76,7 +77,7 @@ export function useNutritionDay(dayKey: string | null): NutritionDay | undefined
         carbs: { eaten: total.carbs, goal: g?.carbsG ?? null },
       },
     };
-  }, [data]);
+  }, [data, dayKey]);
 }
 
 /* ───────── Каталог: продукты, блюда, недавние ───────── */

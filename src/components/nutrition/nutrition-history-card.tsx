@@ -57,7 +57,7 @@ export function NutritionHistoryCard({ days, average, loggedDays, goal, selected
             >
               <div className="flex h-20 w-full items-end overflow-hidden rounded-lg bg-muted">
                 <motion.div
-                  className={cn("w-full rounded-lg", over ? "bg-destructive" : "bg-nutrition", !selected && "opacity-70")}
+                  className={cn("w-full rounded-lg", over ? "bg-destructive" : "bg-chart-nutrition", !selected && "opacity-70")}
                   initial={{ height: 0 }}
                   animate={{ height: `${(d.kcal / max) * 100}%` }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
