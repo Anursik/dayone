@@ -30,6 +30,8 @@ console.log("\n▶ Публикация в ветку gh-pages");
 fs.rmSync(path.join(out, ".git"), { recursive: true, force: true });
 const g = (cmd) => run(cmd, { cwd: out });
 g("git init -q -b gh-pages");
+// Собранные файлы публикуются байт в байт, без преобразования переводов строк
+g("git config core.autocrlf false");
 g(`git -c user.name="${name}" -c user.email="${email}" add -A`);
 g(`git -c user.name="${name}" -c user.email="${email}" commit -q -m "Deploy ${sha}"`);
 g(`git push -q -f "${remote}" gh-pages`);
