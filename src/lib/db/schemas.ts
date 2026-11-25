@@ -68,22 +68,29 @@ export const habitLogSchema = z.object({
 
 /* ───────── Питание ───────── */
 
-export const foodSchema = z.object({
-  id: idSchema,
-  name: z.string().trim().min(1).max(80),
-  /** Значения на 100 г */
-  kcal: nonNegative.max(1000),
-  protein: nonNegative.max(100),
-  fat: nonNegative.max(100),
-  carbs: nonNegative.max(100),
-  source: z.enum(["builtin", "custom"]),
-  createdAt: timestampSchema,
-});
+export const foodSchema = z
+  .object({
+    id: idSchema,
+    name: z.string().trim().min(1).max(80),
+    /** Значения на 100 г */
+    kcal: nonNegative.max(1000),
+    protein: nonNegative.max(100),
+    fat: nonNegative.max(100),
+    carbs: nonNegative.max(100),
+    source: z.enum(["builtin", "custom"]),
+    createdAt: timestampSchema,
+  })
+  .refine((f) => f.protein + f.fat + f.carbs <= 100.5, {
+    message: "Сумма белков, жиров и углеводов не может превышать 100 г на 100 г продукта",
+    path: ["carbs"],
+  });
 
 export const recipeSchema = z.object({
   id: idSchema,
   name: z.string().trim().min(1).max(80),
   items: z.array(z.object({ foodId: idSchema, grams: z.number().positive().max(10000) })).min(1),
+  /** Вес готового блюда (выход), г. null — равен сумме ингредиентов */
+  yieldGrams: z.number().positive().max(100000).nullable().default(null),
   createdAt: timestampSchema,
   updatedAt: timestampSchema,
 });

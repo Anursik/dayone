@@ -30,6 +30,11 @@ export function addDays(date: Date, days: number): Date {
   return next;
 }
 
+/** Сдвиг ключа дня на N дней (локальный календарь). */
+export function shiftDayKey(key: string, days: number): string {
+  return toDayKey(addDays(fromDayKey(key), days));
+}
+
 /** Понедельник недели, к которой относится дата (локальное время). */
 export function startOfWeek(date: Date): Date {
   const d = new Date(date.getFullYear(), date.getMonth(), date.getDate());
