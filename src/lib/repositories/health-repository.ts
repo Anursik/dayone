@@ -26,6 +26,11 @@ export const healthRepository = {
     return withDataErrors(() => getDb().healthEntries.where("date").equals(date).sortBy("createdAt"));
   },
 
+  /** Все показатели за период (в порядке создания — последняя запись дня идёт последней). */
+  allBetween(fromKey: string, toKey: string): Promise<HealthEntry[]> {
+    return withDataErrors(() => getDb().healthEntries.where("date").between(fromKey, toKey, true, true).sortBy("createdAt"));
+  },
+
   entriesBetween(type: HealthType, fromKey: string, toKey: string): Promise<HealthEntry[]> {
     return withDataErrors(() =>
       getDb().healthEntries.where("[type+date]").between([type, fromKey], [type, toKey], true, true).toArray(),

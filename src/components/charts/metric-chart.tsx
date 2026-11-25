@@ -19,13 +19,15 @@ interface MetricChartProps {
   goalLabel?: string;
   height?: number;
   label: string;
+  /** Фиксированный диапазон оси Y и только целые деления (например, настроение 1–5) */
+  integerDomain?: [number, number];
 }
 
 const tickFmt = new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "short" });
 const fullFmt = new Intl.DateTimeFormat("ru-RU", { weekday: "short", day: "numeric", month: "long" });
 
 /** Один показатель по дням: столбики для суточных величин, линия — для веса и замеров. */
-export function MetricChart({ data, kind, colorVar, format, goal, goalLabel, height = 180, label }: MetricChartProps) {
+export function MetricChart({ data, kind, colorVar, format, goal, goalLabel, height = 180, label, integerDomain }: MetricChartProps) {
   const t = useChartTokens(colorVar);
   const canHover = useCanHover();
   const rows = data.map((d, i) => ({ i, key: d.key, value: d.value }));
@@ -50,7 +52,18 @@ export function MetricChart({ data, kind, colorVar, format, goal, goalLabel, hei
         minTickGap={24}
       />
     ),
-    y: <YAxis tickLine={false} axisLine={false} tick={{ fill: t.text, fontSize: 11 }} width={44} domain={kind === "line" ? ["auto", "auto"] : [0, "auto"]} tickFormatter={(v: number) => format(v)} />,
+    y: (
+      <YAxis
+        tickLine={false}
+        axisLine={false}
+        tick={{ fill: t.text, fontSize: 11 }}
+        width={44}
+        domain={integerDomain ?? (kind === "line" ? ["auto", "auto"] : [0, "auto"])}
+        allowDecimals={!integerDomain}
+        ticks={integerDomain ? Array.from({ length: integerDomain[1] - integerDomain[0] + 1 }, (_, i) => integerDomain[0] + i) : undefined}
+        tickFormatter={(v: number) => format(v)}
+      />
+    ),
   };
   const tooltip = (
     <Tooltip

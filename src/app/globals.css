@@ -43,6 +43,7 @@
    * Цвета данных на графиках — отдельные шаги, проверенные валидатором палитры
    * (контраст ≥ 3:1 к поверхности карточки, допустимая светлота) для каждой темы.
    */
+  --chart-habits: #7c5cff;
   --chart-health: #0e9a6a;
   --chart-water: #1683c9;
   --chart-sleep: #6d5dfc;
@@ -91,6 +92,7 @@
   --c-fat: #f7b733;
   --c-carbs: #5a95ff;
 
+  --chart-habits: #9580ff;
   --chart-health: #1fb07f;
   --chart-water: #2f9edb;
   --chart-sleep: #8a7dff;
