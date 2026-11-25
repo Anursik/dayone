@@ -8,13 +8,13 @@ import type { DashboardSummary, MacroValue } from "@/types/dashboard";
 function Macro({ label, value, color }: { label: string; value: MacroValue; color: string }) {
   return (
     <div className="min-w-0">
-      <div className="flex items-baseline justify-between gap-1">
-        <span className="text-[12.5px] font-medium text-muted-foreground">{label}</span>
-        <span className="tabular text-[12.5px] font-semibold">
-          {formatNumber(value.eaten)}
-          <span className="text-muted-foreground">{value.goal ? `/${formatNumber(value.goal)}` : ""} г</span>
+      <p className="text-[12.5px] font-medium text-muted-foreground">{label}</p>
+      <p className="tabular truncate text-[14px] font-semibold">
+        {formatNumber(value.eaten)}
+        <span className="text-[12.5px] font-medium text-muted-foreground">
+          {value.goal ? ` / ${formatNumber(value.goal)}` : ""} г
         </span>
-      </div>
+      </p>
       <ProgressBar className="mt-1.5" value={value.goal ? value.eaten / value.goal : 0} color={color} label={label} />
     </div>
   );
@@ -54,7 +54,7 @@ export function CalorieOverview({ nutrition }: { nutrition: DashboardSummary["nu
       <div className="mt-4 grid grid-cols-3 gap-3">
         <Macro label="Белки" value={nutrition.protein} color="var(--c-protein)" />
         <Macro label="Жиры" value={nutrition.fat} color="var(--c-fat)" />
-        <Macro label="Углев." value={nutrition.carbs} color="var(--c-carbs)" />
+        <Macro label="Углеводы" value={nutrition.carbs} color="var(--c-carbs)" />
       </div>
 
       {caloriesGoal === null ? (

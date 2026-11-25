@@ -13,12 +13,12 @@ import { StatTile } from "./stat-tile";
 const workoutDate = new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "short" });
 
 export function DashboardScreen() {
-  const summary = useDashboardSummary();
+  const { summary } = useDashboardSummary();
   const { habits, water, sleep, lastWorkout } = summary;
 
   return (
     <>
-      <DashboardHeader />
+      <DashboardHeader profileName={summary.profileName} />
       <DayProgressCard summary={summary} />
 
       <SectionTitle>Быстрый переход</SectionTitle>

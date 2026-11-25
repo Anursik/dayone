@@ -1,10 +1,10 @@
 "use client";
 
-import { Clock, Globe, Info, Palette, Smartphone, Vibrate } from "lucide-react";
+import { Clock, Globe, Info, Palette, Smartphone, UserRound, Vibrate } from "lucide-react";
 import { useEffect, useState } from "react";
 import { PageHeader } from "@/components/layout/page-header";
 import { Card } from "@/components/ui/card";
-import { ListGroup, ListRow } from "@/components/ui/list-row";
+import { ListGroup, ListRow, ListRowLink } from "@/components/ui/list-row";
 import { SectionTitle } from "@/components/ui/section-title";
 import { SegmentedControl } from "@/components/ui/segmented-control";
 import { Switch } from "@/components/ui/switch";
@@ -13,6 +13,7 @@ import type { ThemeMode } from "@/lib/settings/settings-store";
 import { useSettings } from "@/lib/settings/use-settings";
 import { useTelegram } from "@/lib/telegram/telegram-provider";
 import { useTheme } from "@/lib/theme/theme-provider";
+import { DataSection } from "./data-section";
 
 const THEME_OPTIONS: { value: ThemeMode; label: string }[] = [
   { value: "system", label: "Авто" },
@@ -55,6 +56,13 @@ export function SettingsScreen() {
 
       <SectionTitle>Общие</SectionTitle>
       <ListGroup>
+        <ListRowLink
+          href="/profile/edit"
+          icon={UserRound}
+          color="var(--c-habits)"
+          title="Профиль и цели"
+          subtitle="Имя, возраст, рост, вес, нормы"
+        />
         <ListRow
           icon={Vibrate}
           title="Вибрация"
@@ -88,9 +96,7 @@ export function SettingsScreen() {
         <ListRow icon={Info} title="Версия DAYONE" trailing={<Value>0.1.0</Value>} />
       </ListGroup>
 
-      <p className="mt-4 px-1 text-[13px] leading-relaxed text-muted-foreground">
-        Профиль, цели, экспорт, импорт и сброс данных появятся после подключения локальной базы данных.
-      </p>
+      <DataSection />
     </>
   );
 }

@@ -17,7 +17,9 @@ const MEALS: { key: string; label: string; icon: LucideIcon }[] = [
 ];
 
 export function NutritionScreen() {
-  const { nutrition } = useDashboardSummary();
+  const {
+    summary: { nutrition },
+  } = useDashboardSummary();
 
   return (
     <>

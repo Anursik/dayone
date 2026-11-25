@@ -58,7 +58,7 @@ export const PROFILE_SECTIONS: ProfileSection[] = [
   {
     href: "/profile/settings",
     label: "Настройки",
-    description: "Тема, вибрация, часовой пояс",
+    description: "Профиль, тема, экспорт и импорт",
     icon: Settings,
     color: "var(--muted-foreground)",
   },

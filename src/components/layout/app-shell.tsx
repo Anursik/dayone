@@ -2,9 +2,12 @@
 
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, type ReactNode } from "react";
+import { Toaster } from "@/components/ui/toaster";
+import { DatabaseGate } from "@/lib/db/database-provider";
 import { getParentPath } from "@/lib/navigation";
 import { useTelegramBackButton } from "@/lib/telegram/use-back-button";
 import { BottomNav } from "./bottom-nav";
+import { ErrorBoundary } from "./error-boundary";
 
 /** Каркас приложения: контент с учётом safe area, нижняя навигация и кнопка «Назад» Telegram. */
 export function AppShell({ children }: { children: ReactNode }) {
@@ -29,9 +32,12 @@ export function AppShell({ children }: { children: ReactNode }) {
           paddingRight: "max(16px, var(--sar))",
         }}
       >
-        {children}
+        <ErrorBoundary resetKey={pathname}>
+          <DatabaseGate>{children}</DatabaseGate>
+        </ErrorBoundary>
       </main>
       <BottomNav />
+      <Toaster />
     </div>
   );
 }
