@@ -33,10 +33,10 @@ export function PageHeader({ title, subtitle, backHref, action }: PageHeaderProp
       ) : null}
       <div className="flex items-end justify-between gap-3">
         <div className="min-w-0">
-          <h1 className="text-[30px] leading-tight font-bold tracking-[-0.02em]">{title}</h1>
+          <h1 className="text-[30px] leading-tight font-bold tracking-[-0.02em] [overflow-wrap:anywhere]">{title}</h1>
           {subtitle ? <div className="mt-1 text-[15px] text-muted-foreground">{subtitle}</div> : null}
         </div>
-        {action}
+        {action ? <div className="shrink-0">{action}</div> : null}
       </div>
     </header>
   );

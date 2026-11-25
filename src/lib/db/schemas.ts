@@ -151,6 +151,8 @@ export const workoutSessionSchema = z.object({
       weightKg: nullableNum(0, 1000),
       reps: z.number().int().min(0).max(1000),
       completedAt: timestampSchema.nullable(),
+      /** Отдых после подхода, сек */
+      restSec: z.number().int().min(0).max(3600).default(90),
     }),
   ),
 });

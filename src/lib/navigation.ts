@@ -83,5 +83,7 @@ export function getParentPath(pathname: string): string | null {
   if (path.startsWith("/profile/")) return "/profile";
   if (path.startsWith("/habits/")) return "/habits";
   if (path.startsWith("/nutrition/")) return "/nutrition";
+  if (path === "/workouts/exercise") return "/workouts/exercises";
+  if (path.startsWith("/workouts/")) return "/workouts";
   return null;
 }

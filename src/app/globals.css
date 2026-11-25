@@ -173,6 +173,13 @@
   }
 }
 
+/* Графики: без рамки фокуса после касания (подсказка показывается по касанию/наведению) */
+.recharts-wrapper,
+.recharts-wrapper *,
+.recharts-surface {
+  outline: none !important;
+}
+
 /* Bottom sheet (Radix Dialog, data-state="open" | "closed") */
 @keyframes sheet-in {
   from { transform: translateY(100%); }
