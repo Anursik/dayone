@@ -81,5 +81,6 @@ export function getActiveTab(pathname: string): string {
 export function getParentPath(pathname: string): string | null {
   const path = normalizePath(pathname);
   if (path.startsWith("/profile/")) return "/profile";
+  if (path.startsWith("/habits/")) return "/habits";
   return null;
 }
