@@ -1,0 +1,75 @@
+1:"$Sreact.fragment"
+3:"/dayone/_next/static/chunks/1ua2kfq9s-me6.js"
+4:"/dayone/_next/static/chunks/334un-cxog9ei.js"
+5:"/dayone/_next/static/chunks/3bhyw5gaxh90r.js"
+6:"/dayone/_next/static/chunks/3tni5o2h732w7.js"
+7:I[79520,["$3","$4","$5","$6"],""]
+8:I[44636,["$3","$4","$5","$6"],"Providers"]
+9:I[44787,["$3","$4","$5","$6"],"AppShell"]
+a:I[39756,["$3","$4","$5","$6"],"default"]
+b:"/dayone/_next/static/chunks/2tmk6av89-e88.js"
+c:I[16868,["$3","$4","$5","$6","$b"],"default"]
+d:I[37457,["$3","$4","$5","$6"],"default"]
+e:I[5014,["$3","$4","$5","$6"],"default"]
+f:I[22016,["$3","$4","$5","$6"],""]
+16:"ViewportBoundary"
+17:I[97367,["$3","$4","$5","$6"],"$16"]
+19:"MetadataBoundary"
+1a:I[97367,["$3","$4","$5","$6"],"$19"]
+1b:"$Sreact.suspense"
+1d:I[68027,["$3","$4","$5","$6"],"default",1]
+:HL["/dayone/_next/static/chunks/1f22gya9ptklb.css","style"]
+:HL["/dayone/_next/static/media/276a8f4fe816cb6b-s.p.2v2sz4qlut9s1.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/dayone/_next/static/media/82450a180bcad83c-s.p.0p-wng2nn8o-p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+2:T4dc,(function(){
+  var root = document.documentElement;
+  function lum(hex){
+    if(!hex||typeof hex!=='string')return null;
+    var c=hex.replace('#','');
+    if(c.length!==6)return null;
+    var r=parseInt(c.slice(0,2),16),g=parseInt(c.slice(2,4),16),b=parseInt(c.slice(4,6),16);
+    return (0.299*r+0.587*g+0.114*b)<128?'dark':'light';
+  }
+  function telegramScheme(){
+    try{
+      var h=location.hash||'';
+      var i=h.indexOf('tgWebAppThemeParams=');
+      if(i>-1){
+        var raw=decodeURIComponent(h.slice(i+20).split('&')[0]);
+        var s=lum(JSON.parse(raw).bg_color);
+        if(s)return s;
+      }
+      var stored=sessionStorage.getItem('__telegram__themeParams');
+      if(stored){return lum(JSON.parse(stored).bg_color);}
+    }catch(e){}
+    return null;
+  }
+  try{
+    var mode='system';
+    var saved=localStorage.getItem("dayone:settings");
+    if(saved){var p=JSON.parse(saved);if(p&&(p.theme==='light'||p.theme==='dark'))mode=p.theme;}
+    var theme=mode;
+    if(mode==='system'){
+      theme=telegramScheme()||(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    }
+    root.setAttribute('data-theme',theme);
+  }catch(e){
+    root.setAttribute('data-theme','light');
+  }
+})();11:X
+14:[["children",{"s":"__PAGE__","h":512,"d":{"r":"$L15","p":false,"v":null}}]]
+12:[["children",{"s":"settings","h":512,"d":{"r":"$L13","p":false,"v":"$11"},"c":"$Q14"}]]
+10:[["children",{"s":"profile","h":512,"d":{"r":["$","$1","c",{"children":[null,["$","$La",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$Ld",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],"p":false,"v":"$11"},"c":"$Q12"}]]
+0:{"P":null,"c":["","profile","settings",""],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/dayone/_next/static/chunks/1f22gya9ptklb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/dayone/_next/static/chunks/1ua2kfq9s-me6.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/dayone/_next/static/chunks/334un-cxog9ei.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/dayone/_next/static/chunks/3bhyw5gaxh90r.js","async":true,"nonce":"$undefined"}],["$","script","script-3",{"src":"/dayone/_next/static/chunks/3tni5o2h732w7.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ru","data-theme":"light","suppressHydrationWarning":true,"className":"FVC5Iq_variable","children":[["$","head",null,{"children":["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$2"}}]}],["$","body",null,{"children":[["$","$L7",null,{"src":"https://telegram.org/js/telegram-web-app.js","strategy":"beforeInteractive"}],["$","$L8",null,{"children":["$","$L9",null,{"children":["$","$La",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$Lc",null,{"children":["$","$Ld",null,{}]}],"templateStyles":[],"templateScripts":[["$","script","script-0",{"src":"/dayone/_next/static/chunks/2tmk6av89-e88.js","async":true,"nonce":"$undefined"}]],"notFound":[["$","div",null,{"className":"flex flex-col items-center px-6 py-10 text-center pt-24","children":[["$","span",null,{"className":"grid shrink-0 place-items-center size-14 rounded-2xl [&_svg]:size-7","style":{"color":"var(--c-workouts)","backgroundColor":"color-mix(in srgb, var(--c-workouts) 14%, transparent)"},"children":["$","$Le",null,{"ref":"$undefined","icon":{"name":"compass","size":24,"node":[["circle",{"cx":"12","cy":"12","r":"10","key":"1mglay"}],["path",{"d":"m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z","key":"9ktpf1"}]]},"className":"$undefined","strokeWidth":2.2}]}],["$","h3",null,{"className":"mt-4 text-[17px] font-semibold tracking-tight","children":"Экран не найден"}],["$","p",null,{"className":"mt-1.5 max-w-[280px] text-[14px] leading-relaxed text-muted-foreground","children":"Такой страницы в DAYONE нет."}],["$","div",null,{"className":"mt-5 w-full","children":["$","$Lf",null,{"href":"/","className":"inline-flex h-11 items-center rounded-2xl bg-primary px-5 text-[15px] font-semibold text-primary-foreground","children":"На главную"}]}]]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}]]}]]}],"p":false,"v":null},"c":"$Q10"},"h":{"r":["$","$1","h",{"children":[null,["$","$L17",null,{"children":"$L18"}],["$","$L1a",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$1b",null,{"name":"Next.Metadata","children":"$L1c"}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":false,"v":null}},"m":"$undefined","G":["$1d",[["$","link","0",{"rel":"stylesheet","href":"/dayone/_next/static/chunks/1f22gya9ptklb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"e51N0PwmwQ7EiQXVJHZ_g"}
+1e:"/dayone/_next/static/chunks/2r6-e9__swnjc.js"
+1f:"/dayone/_next/static/chunks/0p98uvc44vq8d.js"
+20:"/dayone/_next/static/chunks/2tmc-yn6anut_.js"
+21:I[68426,["$3","$4","$5","$6","$1e","$1f","$20"],"SettingsScreen"]
+22:I[97367,["$3","$4","$5","$6"],"OutletBoundary"]
+11:C
+13:["$","$1","c",{"children":[null,["$","$La",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$Ld",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+15:["$","$1","c",{"children":[["$","$L21",null,{}],[["$","script","script-0",{"src":"/dayone/_next/static/chunks/2r6-e9__swnjc.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/dayone/_next/static/chunks/0p98uvc44vq8d.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/dayone/_next/static/chunks/2tmc-yn6anut_.js","async":true,"nonce":"$undefined"}]],["$","$L22",null,{"children":["$","$1b",null,{"name":"Next.MetadataOutlet","children":"$@23"}]}]]}]
+18:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"}],["$","meta","2",{"name":"theme-color","content":"#f4f4f6"}]]
+24:I[27201,["$3","$4","$5","$6"],"IconMark"]
+1c:[["$","title","0",{"children":"Настройки · DAYONE"}],["$","meta","1",{"name":"description","content":"Персональное приложение для привычек, питания, тренировок и здоровья."}],["$","meta","2",{"name":"application-name","content":"DAYONE"}],["$","meta","3",{"name":"format-detection","content":"telephone=no, address=no, email=no"}],["$","link","4",{"rel":"icon","href":"/dayone/icon.svg?icon.40mwui6hl3ako.svg","sizes":"any","type":"image/svg+xml"}],["$","$L24","5",{}]]
+23:null

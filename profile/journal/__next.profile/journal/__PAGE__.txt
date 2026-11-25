@@ -1,0 +1,83 @@
+1:"$Sreact.fragment"
+3:"/dayone/_next/static/chunks/1ua2kfq9s-me6.js"
+4:"/dayone/_next/static/chunks/334un-cxog9ei.js"
+5:"/dayone/_next/static/chunks/3bhyw5gaxh90r.js"
+6:"/dayone/_next/static/chunks/3tni5o2h732w7.js"
+7:I[79520,["$3","$4","$5","$6"],""]
+8:I[44636,["$3","$4","$5","$6"],"Providers"]
+9:I[44787,["$3","$4","$5","$6"],"AppShell"]
+a:I[39756,["$3","$4","$5","$6"],"default"]
+b:"/dayone/_next/static/chunks/2tmk6av89-e88.js"
+c:I[16868,["$3","$4","$5","$6","$b"],"default"]
+d:I[37457,["$3","$4","$5","$6"],"default"]
+e:I[5014,["$3","$4","$5","$6"],"default"]
+f:I[22016,["$3","$4","$5","$6"],""]
+18:"/dayone/_next/static/chunks/0nj6fkkcjkgs8.js"
+19:"/dayone/_next/static/chunks/2tmc-yn6anut_.js"
+1a:I[70461,["$3","$4","$5","$6","$18","$19"],"JournalScreen"]
+1d:"ViewportBoundary"
+1e:I[97367,["$3","$4","$5","$6"],"$1d"]
+1f:"MetadataBoundary"
+20:I[97367,["$3","$4","$5","$6"],"$1f"]
+21:"$Sreact.suspense"
+:HL["/dayone/_next/static/chunks/1f22gya9ptklb.css","style"]
+2:T4dc,(function(){
+  var root = document.documentElement;
+  function lum(hex){
+    if(!hex||typeof hex!=='string')return null;
+    var c=hex.replace('#','');
+    if(c.length!==6)return null;
+    var r=parseInt(c.slice(0,2),16),g=parseInt(c.slice(2,4),16),b=parseInt(c.slice(4,6),16);
+    return (0.299*r+0.587*g+0.114*b)<128?'dark':'light';
+  }
+  function telegramScheme(){
+    try{
+      var h=location.hash||'';
+      var i=h.indexOf('tgWebAppThemeParams=');
+      if(i>-1){
+        var raw=decodeURIComponent(h.slice(i+20).split('&')[0]);
+        var s=lum(JSON.parse(raw).bg_color);
+        if(s)return s;
+      }
+      var stored=sessionStorage.getItem('__telegram__themeParams');
+      if(stored){return lum(JSON.parse(stored).bg_color);}
+    }catch(e){}
+    return null;
+  }
+  try{
+    var mode='system';
+    var saved=localStorage.getItem("dayone:settings");
+    if(saved){var p=JSON.parse(saved);if(p&&(p.theme==='light'||p.theme==='dark'))mode=p.theme;}
+    var theme=mode;
+    if(mode==='system'){
+      theme=telegramScheme()||(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    }
+    root.setAttribute('data-theme',theme);
+  }catch(e){
+    root.setAttribute('data-theme','light');
+  }
+})();11:X
+14:X
+14:C
+17:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[["$","$L1a",null,{}],[["$","script","script-0",{"src":"/dayone/_next/static/chunks/0nj6fkkcjkgs8.js","async":true}],["$","script","script-1",{"src":"/dayone/_next/static/chunks/2tmc-yn6anut_.js","async":true}]],"$L1b"]}],"p":"$@1c","v":null,"s":"$11"}}]]
+15:[["children",{"s":"journal","h":96,"d":{"r":["$","$1","c",{"children":[null,["$","$La",null,{"parallelRouterKey":"children","template":["$","$Ld",null,{}]}]]}],"p":"$@16","v":"$14","s":"$11"},"c":"$Q17"}]]
+12:[["children",{"s":"profile","h":96,"d":{"r":["$","$1","c",{"children":[null,["$","$La",null,{"parallelRouterKey":"children","template":["$","$Ld",null,{}]}]]}],"p":"$@13","v":"$14","s":"$11"},"c":"$Q15"}]]
+0:{"t":{"t":{"s":"","h":80,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/dayone/_next/static/chunks/1f22gya9ptklb.css","precedence":"next"}],["$","script","script-0",{"src":"/dayone/_next/static/chunks/1ua2kfq9s-me6.js","async":true}],["$","script","script-1",{"src":"/dayone/_next/static/chunks/334un-cxog9ei.js","async":true}],["$","script","script-2",{"src":"/dayone/_next/static/chunks/3bhyw5gaxh90r.js","async":true}],["$","script","script-3",{"src":"/dayone/_next/static/chunks/3tni5o2h732w7.js","async":true}]],["$","html",null,{"lang":"ru","data-theme":"light","suppressHydrationWarning":true,"className":"FVC5Iq_variable","children":[["$","head",null,{"children":["$","script",null,{"dangerouslySetInnerHTML":{"__html":"$2"}}]}],["$","body",null,{"children":[["$","$L7",null,{"src":"https://telegram.org/js/telegram-web-app.js","strategy":"beforeInteractive"}],["$","$L8",null,{"children":["$","$L9",null,{"children":["$","$La",null,{"parallelRouterKey":"children","template":["$","$Lc",null,{"children":["$","$Ld",null,{}]}],"templateStyles":[],"templateScripts":[["$","script","script-0",{"src":"/dayone/_next/static/chunks/2tmk6av89-e88.js","async":true}]],"notFound":[["$","div",null,{"className":"flex flex-col items-center px-6 py-10 text-center pt-24","children":[["$","span",null,{"className":"grid shrink-0 place-items-center size-14 rounded-2xl [&_svg]:size-7","style":{"color":"var(--c-workouts)","backgroundColor":"color-mix(in srgb, var(--c-workouts) 14%, transparent)"},"children":["$","$Le",null,{"icon":{"name":"compass","size":24,"node":[["circle",{"cx":"12","cy":"12","r":"10","key":"1mglay"}],["path",{"d":"m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z","key":"9ktpf1"}]]},"strokeWidth":2.2}]}],["$","h3",null,{"className":"mt-4 text-[17px] font-semibold tracking-tight","children":"Экран не найден"}],["$","p",null,{"className":"mt-1.5 max-w-[280px] text-[14px] leading-relaxed text-muted-foreground","children":"Такой страницы в DAYONE нет."}],["$","div",null,{"className":"mt-5 w-full","children":["$","$Lf",null,{"href":"/","className":"inline-flex h-11 items-center rounded-2xl bg-primary px-5 text-[15px] font-semibold text-primary-foreground","children":"На главную"}]}]]}],[]]}]}]}]]}]]}]]}],"p":"$@10","v":null,"s":"$11"},"c":"$Q12"},"h":{"r":["$","$1","h",{"children":[null,["$","$L1e",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"}],["$","meta","2",{"name":"theme-color","content":"#f4f4f6"}]]}],["$","$L20",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$21",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Дневник · DAYONE"}],["$","meta","1",{"name":"description","content":"Персональное приложение для привычек, питания, тренировок и здоровья."}],"$L22","$L23","$L24","$L25"]}]}],null]}],"$L26"]}],"p":"$@27","v":null,"s":"$11"}},"a":"$@28","u":"$@29","b":"e51N0PwmwQ7EiQXVJHZ_g"}
+2a:I[97367,["$3","$4","$5","$6"],"OutletBoundary"]
+2c:I[27201,["$3","$4","$5","$6"],"IconMark"]
+1b:["$","$L2a",null,{"children":["$","$21",null,{"name":"Next.MetadataOutlet","children":"$@2b"}]}]
+22:["$","meta","2",{"name":"application-name","content":"DAYONE"}]
+23:["$","meta","3",{"name":"format-detection","content":"telephone=no, address=no, email=no"}]
+24:["$","link","4",{"rel":"icon","href":"/dayone/icon.svg?icon.40mwui6hl3ako.svg","sizes":"any","type":"image/svg+xml"}]
+25:["$","$L2c","5",{}]
+26:["$","meta",null,{"name":"next-size-adjust","content":""}]
+11:300
+2b:null
+29:true
+11:C
+28:0
+16:"$undefined"
+13:"$undefined"
+10:"$undefined"
+27:"$undefined"
+1c:"$undefined"
