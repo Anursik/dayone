@@ -93,7 +93,7 @@ export function SettingsScreen() {
             trailing={<Value>{`${telegram.platform} · Bot API ${telegram.version}`}</Value>}
           />
         ) : null}
-        <ListRow icon={Info} title="Версия DAYONE" trailing={<Value>0.1.0</Value>} />
+        <ListRow icon={Info} title="Версия DAYONE" trailing={<Value>{process.env.NEXT_PUBLIC_APP_VERSION}</Value>} />
       </ListGroup>
 
       <DataSection />

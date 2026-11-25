@@ -1,51 +1,78 @@
 # DAYONE
 
-Персональное Telegram Mini App для привычек, питания, тренировок и здоровья.
-Работает без backend-сервера, данные хранятся только на устройстве пользователя.
+Персональное Telegram Mini App для привычек, питания, тренировок, здоровья и дневника.
+Работает без backend-сервера и платных API: все данные хранятся только на устройстве пользователя.
+
+**Приложение:** https://anursik.github.io/dayone/ · **Бот:** @dayoneor1day_bot
+
+## Возможности
+
+| Раздел | Что умеет |
+|---|---|
+| Главная | Приветствие, дата, общий прогресс дня, привычки, калории и остаток, БЖУ, вода, сон, последняя тренировка, быстрый переход |
+| Привычки | Создание, редактирование, архив, удаление, 28 иконок и 8 цветов, расписание по дням недели, ежедневная отметка (без повторной отметки за день), серии, календарь с историей, статистика за неделю и месяц |
+| Питание | Нормы КБЖУ, завтрак/обед/ужин/перекусы, база из 160 продуктов, поиск, свои продукты, блюда из продуктов с учётом веса готового блюда, расчёт по граммовке, история по дням |
+| Тренировки | Библиотека из 47 упражнений + свои, программы (подходы, повторы, вес, отдых), режим тренировки в зале с таймером отдыха и автосохранением, история, личные рекорды, графики прогресса |
+| Здоровье | Вес, вода, сон, шаги, активность, замеры тела — ввод вручную, графики за 30 дней, цели |
+| Дневник | Настроение, оценка дня, «что получилось / не получилось / что улучшить», заметки, автосохранение |
+| Статистика | Общий прогресс и графики за 7 / 30 / 90 дней по всем разделам — только по реальным данным |
+| Настройки | Профиль и цели, тема (авто/светлая/тёмная), вибрация, экспорт и импорт JSON, сброс |
+
+## Данные и приватность
+
+- Основные данные — IndexedDB (Dexie.js), настройки — LocalStorage. Сервера нет.
+- У каждого пользователя Telegram на устройстве отдельная база (`dayone-tg-<id>`), чужие записи не видны.
+- Каждая запись проверяется схемой Zod; изменения сохраняются сразу.
+- Миграции базы — версии Dexie в `src/lib/db/database.ts` (новую структуру добавлять новой `version(N)`).
+- Экспорт/импорт: полная копия в JSON с проверкой структуры и подтверждением перед заменой.
+- После первого открытия приложение работает без интернета (service worker кэширует все экраны).
 
 ## Команды
 
 ```bash
-npm install        # зависимости
-npm run dev        # режим разработки: http://localhost:3000 (работает в обычном браузере)
-npm run build      # статическая сборка в папку out/
-npx tsc --noEmit   # проверка TypeScript
-npm run lint       # ESLint
+npm install
+npm run dev         # разработка: http://localhost:3000 (работает в обычном браузере)
+npm run build       # статическая сборка в out/ + service worker
+npm run typecheck   # TypeScript
+npm run lint        # ESLint
+npm run deploy      # сборка с basePath и публикация в ветку gh-pages
 ```
 
-Сборка под GitHub Pages (если репозиторий называется `dayone`):
+## Публикация на GitHub Pages
 
-```bash
-NEXT_PUBLIC_BASE_PATH=/dayone npm run build
-```
+1. Репозиторий: `github.com/<логин>/dayone`, вход в GitHub CLI (`gh auth login`).
+2. `npm run deploy` — собирает проект с `NEXT_PUBLIC_BASE_PATH=/<репозиторий>` и пушит `out/` в ветку `gh-pages`.
+3. GitHub → Settings → Pages → Source: ветка `gh-pages`, папка `/` (включается автоматически при первом пуше).
+4. Адрес: `https://<логин>.github.io/<репозиторий>/`.
+
+## Подключение к Telegram-боту
+
+В [@BotFather](https://t.me/BotFather): `/mybots` → бот → **Bot Settings**:
+- **Configure Mini App** → **Enable Mini App** → адрес приложения;
+- **Menu Button** → адрес приложения и название кнопки.
+
+Токен бота приложению не нужен и в код не добавляется.
 
 ## Стек
 
-Next.js 16 (static export) · TypeScript · Tailwind CSS 4 · компоненты в стиле shadcn/ui (`components.json`) ·
-Lucide · Framer Motion · Zod · Dexie.js (этап 2) · Recharts (этап 7) · официальный Telegram Web App SDK (`telegram-web-app.js`).
+Next.js 16 (static export) · TypeScript · Tailwind CSS 4 · компоненты в стиле shadcn/ui · Radix UI · Lucide ·
+Framer Motion · Dexie.js · Recharts · Zod · официальный Telegram Web App SDK.
 
 ## Структура
 
 ```
 src/
-  app/                 маршруты (каждый экран — отдельная статическая страница)
-  components/
-    ui/                дизайн-система: Card, Button, ProgressRing, SegmentedControl, Switch, ListRow…
-    layout/            AppShell, нижняя навигация, PageHeader
-    dashboard/ habits/ nutrition/ workouts/ health/ journal/ analytics/ profile/ settings/
-  features/            логика разделов (хуки, связывающие UI и репозитории)
+  app/             маршруты (статические страницы; ID передаются в ?id=…)
+  components/      ui/ (дизайн-система), layout/, charts/ и экраны разделов
+  features/        хуки разделов: связывают экраны с репозиториями (live-запросы)
   lib/
-    telegram/          SDK-обёртка: провайдер, BackButton, HapticFeedback, типы
-    theme/             темы (авто/светлая/тёмная), скрипт без «вспышки» темы
-    settings/          настройки в LocalStorage с проверкой Zod
-    calculations/      чистые функции расчётов
-    date.ts, format.ts, navigation.ts
-  hooks/  types/
+    db/            Dexie, схемы Zod, ошибки, провайдер базы
+    repositories/  единственный слой доступа к данным
+    calculations/  чистые функции: серии, КБЖУ, рекорды, аналитика
+    nutrition/     база продуктов и поиск
+    workouts/      библиотека упражнений
+    health/        показатели здоровья
+    telegram/      SDK: провайдер, BackButton, HapticFeedback, параметры запуска
+    theme/ settings/ offline/
+scripts/           postbuild (service worker, файлы для Pages), deploy
 ```
-
-## Telegram
-
-Внутри Telegram используются: `ready()`, `expand()`, `disableVerticalSwipes()`, нативная кнопка «Назад»,
-тема Telegram (в режиме «Авто»), цвета шапки и фона, safe area (`--tg-safe-area-inset-*`), вибрация.
-В обычном браузере приложение работает в браузерном режиме с собственной кнопкой «Назад».
-Данные пользователя Telegram (`initDataUnsafe`) используются только для имени и аватара и не считаются проверенной идентификацией.

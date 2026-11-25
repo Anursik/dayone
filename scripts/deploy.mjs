@@ -15,12 +15,9 @@ const basePath = `/${repo}`;
 console.log(`\n▶ Сборка с basePath=${basePath}`);
 run("npm run build", { env: { ...process.env, NEXT_PUBLIC_BASE_PATH: basePath, NEXT_TELEMETRY_DISABLED: "1" } });
 
+// .nojekyll, 404.html и sw.js создаёт scripts/postbuild.mjs (часть npm run build)
 const out = path.join(root, "out");
-// Без .nojekyll GitHub Pages не отдаёт папку _next
-fs.writeFileSync(path.join(out, ".nojekyll"), "");
-// 404.html в корне — GitHub Pages показывает его для несуществующих адресов
-const nested404 = path.join(out, "404", "index.html");
-if (fs.existsSync(nested404)) fs.copyFileSync(nested404, path.join(out, "404.html"));
+if (!fs.existsSync(path.join(out, "sw.js"))) throw new Error("Сборка неполная: нет out/sw.js");
 
 const name = read("git config user.name");
 const email = read("git config user.email");
